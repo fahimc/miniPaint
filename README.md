@@ -1,72 +1,62 @@
-<img src="images/logo.svg" alt="Photo Editor" width="80" height="80">
+# <img src="images/logo.svg" alt="" width="40" height="40"> Photo Editor · Studio
 
-# Studio — FileBrowser image editor
+A portable image editor with a dark desktop workspace, real drawing tools, layers and filters. Edit device files on their own, or connect to My Drive to open and save images through FileBrowser.
 
-This fork adds a Photoshop-style dark desktop workspace, portable **Studio.exe**, FileBrowser open/save integration and optional MyAccounts OIDC login. Local editing works without FileBrowser. See [Studio usage and build instructions](STUDIO.md).
+[Download Studio for Windows](https://github.com/fahimc/miniPaint/releases/tag/studio-v0.1.0) · [Usage and configuration](STUDIO.md) · [FileBrowser adapter](integrations/filebrowser/install.ps1) · [One Workspace](https://github.com/fahimc/one-workspace)
 
-[Download Studio for Windows](https://github.com/fahimc/miniPaint/releases/tag/studio-v0.1.0) — preview release, built locally without GitHub Actions.
+![Photo Editor displaying a sample image with drawing tools, Navigator, Color and Layers panels](images/studio-workflow-preview.png)
 
-## Preview
+*Actual desktop interface opening a sample image through an isolated Drive connection. Local editing is also available without an account.*
 
-![Studio Photoshop-style dark workspace with drawing tools, Navigator, Color, Properties and Layers panels](images/studio-branding-preview.png)
+## Create and edit
 
-Studio's skinned workspace displaying miniPaint's bundled sample project.
+- Draw, select, crop, resize, add text and apply filters with miniPaint's existing image engine.
+- Work with layers, undo/redo, colours and a canvas preview in one compact workspace.
+- Open device images and layered miniPaint JSON projects. Save a layered project or export a flattened PNG, JPEG or WebP.
+- Use **Open**, **Save** and **Save as**, with familiar `Ctrl+O`, `Ctrl+S` and `Ctrl+Shift+S` shortcuts.
+- Connect FileBrowser for authenticated file access, revision checks and overwrite-conflict feedback.
 
-Upstream miniPaint supplies the image engine and retains its MIT attribution below. Photoshop UI conventions are a visual reference; Adobe code/assets and full Photoshop/PSD feature parity are not included.
+## Start the Windows app
 
-## Upstream miniPaint
+1. Download the [Studio preview](https://github.com/fahimc/miniPaint/releases/tag/studio-v0.1.0).
+2. Run `Studio.exe`. It opens the editor at `http://localhost:8870`.
+3. Choose **Open** for a device image, or start with a new canvas.
+4. Use **Save** or **Save as**. Browsers with File System Access support can write directly after permission; others download a copy.
 
-Online image editor lets you create and edit images using HTML5 technologies. No need to buy, download, install, or have outdated flash. No ads. Key features: layers, filters, open source Photoshop alternative.
+Local editing does not require FileBrowser, Docker, Node.js or MyAccounts. Images are sent to FileBrowser only when using the connected server workflow.
 
-miniPaint operates directly in the browser. You can create images by pasting from the clipboard (ctrl+v) or uploading from the computer (_using menu or drag & drop_). Nothing will be sent to any server. Everything stays in your browser. 
+## Connect to My Drive
 
-## URL:
-**https://viliusle.github.io/miniPaint/**
+Configure `Studio.json` beside the executable:
 
-**Change log:** [/miniPaint/releases](https://github.com/viliusle/miniPaint/releases)
+```json
+{
+  "listen": "localhost:8870",
+  "filebrowser": "http://localhost:8810"
+}
+```
 
-## Browser Support
-- Chrome
-- Firefox
-- Opera
-- Edge
-- Safari
-- Yandex
+Install the [FileBrowser adapter](integrations/filebrowser/install.ps1) into an updated Drive build to provide the Studio file endpoints. In Drive, open **Image Studio** or use **Edit in Studio** from a supported image's menu.
 
-## Features
+Integrated Studio inherits Drive's account and file permissions. For a standalone companion sharing Drive's browser session, keep both on the same hostname; `localhost` and `127.0.0.1` are different cookie hosts. A separate MyAccounts client is optional for the independent app; it does not grant Drive file access by itself.
 
-**Files**: open images, directories, URLs, data URLs, drag and drop, save (PNG, JPG, BMP, WEBP, animated GIF, TIFF, JSON (layers data), print.
+[Full setup, authentication and save behaviour](STUDIO.md)
 
-**Edit**: undo, cut, copy, paste, selection, paste from the clipboard.
+## Build locally
 
-**Image**: information, EXIF, trim, zoom, resize (Hermite resample, default resize), rotate, flip, color corrections (brightness, contrast, hue, saturation, luminance), automatic color adjustment, grid, histogram, negative.
+Use the Windows build script with a writable staging folder:
 
-**Layers**: multi-layer system, differences, merging, flattening, transparency support.
+```powershell
+./scripts/build-windows.ps1 -BuildRoot 'I:/Build/Studio' `
+  -OutputDirectory 'I:/Build/Studio-Portable' -GoExecutable 'go'
+```
 
-**Effects**: black and white, blur (box, gaussian, stack, zoom), bulge/pinch, denoise, desaturation, dither, dot screen, edge, emboss, enrich, gamma, grains, grayscale, heatmap, jpg compression, mosaic, oil, sepia, sharpen, solarize, tilt shift, vignette, vibrance, vintage, blueprint, night vision, pencil, also instagram filters: 1977, aden, clarendon, gingham, inkwell, lo-fi, toaster, valencia, x-pro ii.
+Building requires Node/npm and Go; running the packaged EXE does not. The script builds the web assets and embeds them in the portable executable. Builds run locally without GitHub Actions.
 
-**Tools**: pencil, brush, magic wand, eraser, fill, color picker, letter, crop, blur, sharpener, desaturation, clone, borders, sprites, keypoints, color zoom, change color, restore transparency, content fill. 
+## Preview status
 
-**Help**: keyboard shortcuts, translation.
+Studio is an unsigned evaluation build. It uses Photoshop-style layout conventions and miniPaint's engine; it is not Adobe software and does not provide full Photoshop/PSD parity. The built-in file save and login paths have documented limits; see [STUDIO.md](STUDIO.md). Current source artwork may be newer than an already published EXE.
 
-## Embed
-To embed this app on another page, use the following HTML code:
+## Credits and license
 
-    <iframe style="box-sizing:border-box; width:100%; height:100vh;" id="miniPaint" src="https://viliusle.github.io/miniPaint/" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-## Build instructions
-See [Wiki > Build instructions](https://github.com/viliusle/miniPaint/wiki/Build-instructions)
-
-## Wiki
-See [Wiki](https://github.com/viliusle/miniPaint/wiki)
-
-## Contributors
-<a align="center" href="https://github.com/viliusle/miniPaint/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=viliusle/miniPaint" />
-</a>
-
-## License
-MIT License
-
-## Support
-Please use the GitHub issues for support, feature requests and bug reports, or contact us by sending an email to www.viliusl@gmail.com.
+Built on [viliusle/miniPaint](https://github.com/viliusle/miniPaint), under the [MIT license](MIT-LICENSE.txt). Upstream tools, translations and contributors remain credited in the [archived upstream README](docs/README-archive.md). For upstream browser embedding and engine documentation, see the [miniPaint wiki](https://github.com/viliusle/miniPaint/wiki).

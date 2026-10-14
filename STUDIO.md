@@ -1,6 +1,4 @@
-<img src="images/logo.svg" alt="Photo Editor" width="80" height="80">
-
-# Studio
+# <img src="images/logo.svg" alt="" width="32" height="32"> Studio
 
 A Photoshop-style desktop workspace built on miniPaint, with its existing drawing tools, layers, filters, selection, text and undo engine. Studio is independently branded; it does not contain Adobe code/assets or implement all Photoshop features. No PSD engine, Smart Objects, Camera Raw or Adobe cloud services are included.
 
