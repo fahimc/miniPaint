@@ -32,3 +32,11 @@ Existing authenticated public integration runtime F:/MyAccounts/integration-prev
 ## Resume constraints
 
 Preserve FileBrowser's uncommitted Photos work and unrelated drive-preview.png/frontend/drive-preview.html. Its compact MyAccounts/Photos histories describe existing protected previews. Do not claim save/login callback acceptance or exact Photoshop/PSD parity without requested validation. Future work: requested functional/permission/save conflict tests, dependency remediation, independent SSO callback verification, richer Photoshop tool/panel behaviour, PSD support if explicitly scoped. No new Android work.
+
+## Final activation
+
+Implementation f60ed93 pushed to the new fork master and remote SHA confirmed. Portable package Studio.exe is 14,724,096 bytes, SHA256 8696fc7e934cfc6db616843c663a7757b9171826ede4361968ab5a693fbd2d09; ZIP beside package directory. Final core filebrowser-studio.exe is 569,330,688 bytes, SHA256 cddf96f91b616ba3c50e749122c239872ace82c01261afc1ad6db8ce0b774f04.
+
+Authenticated public integration core8850 upgraded through its original DPAPI launcher, changing only its executable path; previous wrapper retained as Start-FileBrowser.ps1.before-studio. Current core PID88836, launcher90980; existing Photos8851/gateway8852/tunnel unchanged. Updated processes.json/README in protected runtime. Public /studio and /studio/editor/ respond200 (SPA/static availability only, not authenticated callback proof); exact temporary link stays outside Git. Integrated screenshot8830 shows actual sample JPEG in canvas plus Image Studio sidebar; no public credentials entered.
+
+Current isolated8830 core PID66412 uses same new core; standalone8870 PID91448 runs package/Studio.exe with --filebrowser http://localhost:8830 override. Independent MyAccounts8871 child91692/launcher91524 runs exact package EXE from protected runtime. Verify listeners/paths before stopping. Package Studio.json defaults localhost:8810, whose original published core is unchanged and needs the new adapter/core to provide Studio file endpoints. Final user links should distinguish upgraded integration preview from older8810 installation. No GitHub release or FileBrowser publication performed.
