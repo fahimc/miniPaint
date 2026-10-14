@@ -1,4 +1,10 @@
-# miniPaint
+# Studio — FileBrowser image editor
+
+This fork adds a Photoshop-style dark desktop workspace, portable **Studio.exe**, FileBrowser open/save integration and optional MyAccounts OIDC login. Local editing works without FileBrowser. See [Studio usage and build instructions](STUDIO.md).
+
+Upstream miniPaint supplies the image engine and retains its MIT attribution below. Photoshop UI conventions are a visual reference; Adobe code/assets and full Photoshop/PSD feature parity are not included.
+
+## Upstream miniPaint
 
 Online image editor lets you create and edit images using HTML5 technologies. No need to buy, download, install, or have outdated flash. No ads. Key features: layers, filters, open source Photoshop alternative.
 

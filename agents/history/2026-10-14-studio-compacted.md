@@ -1,0 +1,34 @@
+# Studio fork and FileBrowser integration
+
+## Scope and source
+
+User requested a new GitHub fork of viliusle/miniPaint, Photoshop UI recreation, ordinary-file open/save integration with their FileBrowser, standalone operation with optional integration, and MyAccounts login. New public fork fahimc/miniPaint, local I:/Projects/minipaint-studio. Upstream baseline a79733e (miniPaint 4.14.3), master. Repository-history skill used before source changes; no upstream AGENTS/history found. New fork source publication is part of this request; existing FileBrowser changes are left uncommitted and unreleased.
+
+## Implementation
+
+- Independently branded Studio dark workspace retains miniPaint's real engine/tools/layers/filters. Compact File/Edit/Image/Layer/Select/Filter/View/Window/Help menus, tool rail, options, document tab, Navigator/Color/Properties/Layers panels with hide/reset controls. Not Adobe software or a claim of pixel-identical/full Photoshop/PSD functionality.
+- src/js/studio/workspace.js routes standard Ctrl+O/S/Shift+S/N, device File System Access open/save or download fallback, server source/folder picker, remote originals, editable layered JSON and flattened PNG/JPEG/WebP. View-only files allow local edits/copies. Unsaved warning, visible failures, 412 conflict preservation, revision checks and captured save destinations prevent async save/open switches from writing to another document or clearing newer edits. Existing miniPaint file/export actions retained.
+- desktop/ is a separate Go module, maintained go-oidc v3.21.0 and oauth2 v0.37.0. Embeds generated website, defaults localhost:8870, optional adjacent Studio.json/CLI FileBrowser URL. Local editing works with no connected server. Proxy only /api/, fixed configured upstream, loopback listener, Host and mutation Origin checks, HttpOnly upstream cookies retained, no secrets in browser URLs/localStorage.
+- Optional independent MyAccounts OIDC: discovery, confidential code + S256 PKCE, state cookie + nonce binding, issuer/audience/signature/expiry checks, server-held expiring sessions. Secret supplied by environment or CurrentUser DPAPI launcher, never JSON. No FileBrowser permissions/session are automatically granted by this independent identity. Standalone shared FileBrowser cookies require same hostname; remote users use integrated Studio.
+- integrations/filebrowser contains studio.go, Studio.vue, idempotent source installer. Actual adapter installed in I:/Projects/filebrowser-drive: authenticated /studio route + sidebar, Edit in Studio in file context/preview overflow, static /studio/editor/ embed, /api/studio/file GET/PUT. Uses existing permissions/scopes/access/private path checks, read-only sources, quotas, atomic resource handlers. 64 MiB limit, SHA256 ETags, If-Match existing save, If-None-Match:* new save, no replacing existing names in Save as. Per-process hashed write locks serialize Studio clients; external/filesystem/non-Studio writes are still optimistic, not a universal transaction or collaboration protocol. Public shares unsupported. No new media DB.
+- scripts/build-windows.ps1 stages source locally, npm ci/build + Go build; default output build/windows-amd64. scripts/run-with-myaccounts.ps1 unprotects CurrentUser DPAPI secret. Full usage/limits in STUDIO.md. Built dist bundle committed as upstream does, so static hosting works after clone. Generated desktop/web ignored except sentinel; upstream MIT notices retained.
+
+## Builds and evidence
+
+Production webpack builds, complete FileBrowser Vite builds and native CGO_ENABLED=0 Go builds succeeded with Go 1.27.2. Reusable PowerShell build script executed successfully; script syntax and Git whitespace checks passed. No unit/integration/browser functional tests added/run (not requested). Desktop screenshots visually reviewed: actual sample JPEG fetched from FileBrowser displayed in Studio canvas and Navigator; standalone MyAccounts link reached the real public sign-in screen. Save round trip, OIDC callback/login and full permission regression are not verified by those screenshots. Inherited npm ci reports 24 advisories (3 critical); no broad dependency migration performed. Webpack bundle-size and FileBrowser existing dynamic-import warnings retained.
+
+Introduced compile issue ResourcePostHandler capitalization corrected before successful core builds. Preview exe replacement briefly raced process termination; wait for process exit before copying. Keep generated asset copy/build ordering sequential; backend embeds must receive the latest Studio + FileBrowser frontend bundles before Go build.
+
+## Windows paths and runtime
+
+Build stages: C:/Projects/.cache/minipaint-studio-build and filebrowser-office-build. Outputs under I:/Projects/tooling/releases/studio-preview; portable Studio package under package/. Studio.exe roughly 14 MiB; full FileBrowser roughly 543 MiB because it retains Office assets. No GitHub release requested/created.
+
+Loopback standalone visual demo localhost:8870 configured against localhost:8830; source files are copies of Windows sample wallpapers in filebrowser-office-preview/photos-files. 8830 was upgraded to the new core; its isolated noauth demo remains loopback only and must never be tunnelled. Production 8810/8794 and original Photos binaries remain unchanged.
+
+Independent standalone MyAccounts runtime F:/MyAccounts/studio-preview, localhost:8871, protected dedicated client-secret.dpapi, Studio.json with exact registered callback, Start-Studio.ps1. New distinct Studio OIDC application registered at existing issuer; secret never committed. Launcher holds secret in process environment; protected runtime ACL restricted to current user and SYSTEM. Client registration did not modify MyAccounts source or existing relying parties. Read current runtime config for client identity, do not copy secrets/history artifacts into Git.
+
+Existing authenticated public integration runtime F:/MyAccounts/integration-preview can be upgraded using its Start-FileBrowser.ps1 after a source-build-complete binary is available. Preserve protected client, settings DB, configs, original Photos/gateway/tunnel and their session origin. Runtime README/public-origin.txt holds temporary hostname; never commit it. Do not tunnel the 8830 noauth demo. Reconcile owned listeners before stopping. See FileBrowser history for final installed process/binary update.
+
+## Resume constraints
+
+Preserve FileBrowser's uncommitted Photos work and unrelated drive-preview.png/frontend/drive-preview.html. Its compact MyAccounts/Photos histories describe existing protected previews. Do not claim save/login callback acceptance or exact Photoshop/PSD parity without requested validation. Future work: requested functional/permission/save conflict tests, dependency remediation, independent SSO callback verification, richer Photoshop tool/panel behaviour, PSD support if explicitly scoped. No new Android work.

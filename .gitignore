@@ -14,4 +14,9 @@ nbproject/
 
 /node_modules/
 *.js.ignore
+/build/
+/desktop/Studio.exe
+/desktop/Studio.json
+*.dpapi
+*.png.preview
 

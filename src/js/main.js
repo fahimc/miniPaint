@@ -23,6 +23,8 @@ import Base_search_class from './core/base-search.js';
 import File_open_class from './modules/file/open.js';
 import File_save_class from './modules/file/save.js';
 import * as Actions from './actions/index.js';
+import './../css/studio.css';
+import {startStudio} from './studio/workspace.js';
 
 window.addEventListener('load', function (e) {
 	// Initiate app
@@ -54,4 +56,5 @@ window.addEventListener('load', function (e) {
 	// Render all
 	GUI.init();
 	Layers.init();
+	startStudio(app);
 }, false);
