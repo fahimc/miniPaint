@@ -2,6 +2,8 @@
 
 This fork adds a Photoshop-style dark desktop workspace, portable **Studio.exe**, FileBrowser open/save integration and optional MyAccounts OIDC login. Local editing works without FileBrowser. See [Studio usage and build instructions](STUDIO.md).
 
+[Download Studio for Windows](https://github.com/fahimc/miniPaint/releases/tag/studio-v0.1.0) — preview release, built locally without GitHub Actions.
+
 Upstream miniPaint supplies the image engine and retains its MIT attribution below. Photoshop UI conventions are a visual reference; Adobe code/assets and full Photoshop/PSD feature parity are not included.
 
 ## Upstream miniPaint
