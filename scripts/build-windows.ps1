@@ -2,7 +2,8 @@ param(
  [string]$BuildRoot=(Join-Path $env:LOCALAPPDATA 'StudioBuild'),
  [string]$OutputDirectory='',
  [string]$GoExecutable='go',
- [string]$FileBrowserUrl='http://localhost:8810'
+ [string]$FileBrowserUrl='http://localhost:8810',
+ [ValidatePattern('^[a-zA-Z0-9._+-]+$')][string]$Version='studio-preview'
 )
 $ErrorActionPreference='Stop'
 $repoRoot=Split-Path $PSScriptRoot -Parent
@@ -20,7 +21,7 @@ Copy-Item (Join-Path $BuildRoot 'index.html') $web -Force
 foreach($directory in @('dist','images','src')){Copy-Item (Join-Path $BuildRoot $directory) $web -Recurse -Force}
 Copy-Item (Join-Path $repoRoot 'MIT-LICENSE.txt') $web -Force
 $previousCgo=$env:CGO_ENABLED
-try{$env:CGO_ENABLED='0';Push-Location $desktop;try{& $GoExecutable build -trimpath -ldflags '-s -w -H windowsgui' -o (Join-Path $OutputDirectory 'Studio.exe') .;if($LASTEXITCODE){throw 'Go build failed'}}finally{Pop-Location}}finally{$env:CGO_ENABLED=$previousCgo}
+try{$env:CGO_ENABLED='0';Push-Location $desktop;try{& $GoExecutable build -trimpath -ldflags "-s -w -H windowsgui -X main.version=$Version" -o (Join-Path $OutputDirectory 'Studio.exe') .;if($LASTEXITCODE){throw 'Go build failed'}}finally{Pop-Location}}finally{$env:CGO_ENABLED=$previousCgo}
 [IO.File]::WriteAllText((Join-Path $OutputDirectory 'Studio.json'),(@{listen='localhost:8870';filebrowser=$FileBrowserUrl}|ConvertTo-Json))
 Copy-Item (Join-Path $repoRoot 'STUDIO.md'),(Join-Path $repoRoot 'MIT-LICENSE.txt') $OutputDirectory -Force
 $moduleCache=(& $GoExecutable env GOMODCACHE).Trim()
