@@ -1,3 +1,5 @@
+<img src="images/logo.svg" alt="Photo Editor" width="80" height="80">
+
 # Studio — FileBrowser image editor
 
 This fork adds a Photoshop-style dark desktop workspace, portable **Studio.exe**, FileBrowser open/save integration and optional MyAccounts OIDC login. Local editing works without FileBrowser. See [Studio usage and build instructions](STUDIO.md).
@@ -6,7 +8,7 @@ This fork adds a Photoshop-style dark desktop workspace, portable **Studio.exe**
 
 ## Preview
 
-![Studio Photoshop-style dark workspace with drawing tools, Navigator, Color, Properties and Layers panels](images/studio-preview.png)
+![Studio Photoshop-style dark workspace with drawing tools, Navigator, Color, Properties and Layers panels](images/studio-branding-preview.png)
 
 Studio's skinned workspace displaying miniPaint's bundled sample project.
 

@@ -16,6 +16,7 @@ try{& npm.cmd ci;if($LASTEXITCODE){throw 'npm ci failed'};& npm.cmd run build;if
 $desktop=Join-Path $BuildRoot 'desktop'
 New-Item -ItemType Directory -Path $desktop,(Join-Path $desktop 'web') -Force|Out-Null
 Copy-Item (Join-Path $repoRoot 'desktop\*.go'),(Join-Path $repoRoot 'desktop\go.mod'),(Join-Path $repoRoot 'desktop\go.sum') $desktop -Force
+Copy-Item (Join-Path $repoRoot 'desktop\*.syso') $desktop -Force
 $web=Join-Path $desktop 'web'
 Copy-Item (Join-Path $BuildRoot 'index.html') $web -Force
 foreach($directory in @('dist','images','src')){Copy-Item (Join-Path $BuildRoot $directory) $web -Recurse -Force}

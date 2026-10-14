@@ -1,13 +1,34 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 298.73 298.73" style="enable-background:new 0 0 298.73 298.73;" xml:space="preserve">
-<g>
-	<path style="fill:#010002;" d="M264.959,9.35H33.787C15.153,9.35,0,24.498,0,43.154v212.461c0,18.634,15.153,33.766,33.787,33.766
-		h231.171c18.634,0,33.771-15.132,33.771-33.766V43.154C298.73,24.498,283.593,9.35,264.959,9.35z M193.174,59.623
-		c18.02,0,32.634,14.615,32.634,32.634s-14.615,32.634-32.634,32.634c-18.025,0-32.634-14.615-32.634-32.634
-		S175.149,59.623,193.174,59.623z M254.363,258.149H149.362H49.039c-9.013,0-13.027-6.521-8.964-14.566l56.006-110.93
-		c4.058-8.044,11.792-8.762,17.269-1.605l56.316,73.596c5.477,7.158,15.05,7.767,21.386,1.354l13.777-13.951
-		c6.331-6.413,15.659-5.619,20.826,1.762l35.675,50.959C266.487,252.16,263.376,258.149,254.363,258.149z"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Photo Editor logo">
+  <title>Photo Editor logo</title>
+  <defs>
+    <linearGradient id="edge" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF64B2"/>
+      <stop offset="1" stop-color="#F51E8A"/>
+    </linearGradient>
+    <linearGradient id="letters" x1="125" y1="144" x2="384" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF8BCB"/>
+      <stop offset="1" stop-color="#FB348B"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="70" y1="20" x2="445" y2="496" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#240719"/>
+      <stop offset="1" stop-color="#050A19"/>
+    </linearGradient>
+    <radialGradient id="haze" cx="0" cy="0" r="1" gradientTransform="translate(250 103) rotate(90) scale(370)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF64B2" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#FF64B2" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="rounded"><rect width="512" height="512" rx="76"/></clipPath>
+  </defs>
+  <!-- Canvas outside the rounded square remains fully transparent. -->
+  <g clip-path="url(#rounded)">
+    <rect width="512" height="512" fill="url(#panel)"/>
+    <rect width="512" height="512" fill="url(#haze)"/>
+    <rect x="7" y="7" width="498" height="498" rx="70" stroke="url(#edge)" stroke-width="12" fill="none"/>
+    <rect x="24" y="24" width="464" height="464" rx="55" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="2" fill="none"/>
+    <g fill="url(#letters)">
+      <path d="M1296 963Q1296 827 1234.0 720.0Q1172 613 1056.5 554.5Q941 496 782 496H432V0H137V1409H770Q1023 1409 1159.5 1292.5Q1296 1176 1296 963ZM999 958Q999 1180 737 1180H432V723H745Q867 723 933.0 783.5Q999 844 999 958Z" transform="translate(90.586 343) scale(0.121094 -0.121094)"/>
+<path d="M137 0V1409H1245V1181H432V827H1184V599H432V228H1286V0Z" transform="translate(256.000 343) scale(0.121094 -0.121094)"/>
+    </g>
+  </g>
 </svg>

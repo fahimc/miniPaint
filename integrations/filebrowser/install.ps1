@@ -18,8 +18,11 @@ Edit-Once 'backend\internal\web\server.go' 'registerStudioRoutes(router' 'config
 Edit-Once 'frontend\src\router\index.ts' "name:'Studio'" 'const routes: RouteRecordRaw[] = [' ('const routes: RouteRecordRaw[] = ['+"`n"+"{path:'/studio',component:Layout,meta:{requiresAuth:true},children:[{path:'',name:'Studio',component:()=>import('@/views/Studio.vue')}]},")
 Edit-Once 'frontend\src\store\getters.ts' "return 'studio'" 'if (pathname.startsWith(`/tools`)) return ''tools'';' ('if (pathname.startsWith(`/tools`)) return ''tools'';'+"`n    if (pathname === '/studio') return 'studio';")
 Edit-Once 'frontend\src\views\bars\Default.vue' "return 'Studio'" 'getTopTitle() {' ("getTopTitle() {`n      if (state.route?.name === 'Studio') return 'Studio';")
+$brandDirectory=Join-Path $FileBrowserRoot 'frontend\public\img\branding'
+New-Item -ItemType Directory $brandDirectory -Force | Out-Null
+Copy-Item (Join-Path $adapterRoot '..\..\images\logo.svg') (Join-Path $brandDirectory 'photo-editor.svg') -Force
 # Sidebar availability; existing file opening can also use /studio?source=...&path=...
-Edit-Once 'frontend\src\components\sidebar\General.vue' 'Image Studio' '</template>' ('<router-link v-if="!isShare &amp;&amp; isDataLoaded" to="/studio" style="display:flex;padding:14px 24px;color:inherit;text-decoration:none">Image Studio</router-link>'+"`n</template>")
+Edit-Once 'frontend\src\components\sidebar\General.vue' 'Image Studio' '</template>' ('<router-link v-if="!isShare &amp;&amp; isDataLoaded" to="/studio" style="display:flex;padding:14px 24px;color:inherit;text-decoration:none"><img :src="(globalVars.baseURL || ''/'') + ''static/img/branding/photo-editor.svg''" alt="" width="24" height="24">Image Studio</router-link>'+"`n</template>")
 Edit-Once 'frontend\src\components\ContextMenu.vue' 'canOpenStudio(){' '  computed: {' (@'
   computed: {
     canOpenStudio(){return !getters.isShare()&&this.selectedCount===1&&/\.(png|jpe?g|webp|gif|bmp|svg|json)$/i.test(this.firstSelected?.name||'');},
