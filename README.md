@@ -4,6 +4,12 @@ This fork adds a Photoshop-style dark desktop workspace, portable **Studio.exe**
 
 [Download Studio for Windows](https://github.com/fahimc/miniPaint/releases/tag/studio-v0.1.0) — preview release, built locally without GitHub Actions.
 
+## Preview
+
+![Studio Photoshop-style dark workspace with drawing tools, Navigator, Color, Properties and Layers panels](images/studio-preview.png)
+
+Studio's skinned workspace displaying miniPaint's bundled sample project.
+
 Upstream miniPaint supplies the image engine and retains its MIT attribution below. Photoshop UI conventions are a visual reference; Adobe code/assets and full Photoshop/PSD feature parity are not included.
 
 ## Upstream miniPaint
@@ -14,10 +20,6 @@ miniPaint operates directly in the browser. You can create images by pasting fro
 
 ## URL:
 **https://viliusle.github.io/miniPaint/**
-
-## Preview:
-![miniPaint](https://raw.githubusercontent.com/viliusle/miniPaint/master/images/preview.gif)
-(generated using miniPaint)
 
 **Change log:** [/miniPaint/releases](https://github.com/viliusle/miniPaint/releases)
 
