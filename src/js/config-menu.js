@@ -229,7 +229,7 @@ const menuDefinition = [
 			{
 				name: 'Rotate',
 				ellipsis: true,
-				target: 'image/rotate.rotate'
+				target: 'image/rotate.rotate_canvas'
 			},
 			{
 				name: 'Flip',

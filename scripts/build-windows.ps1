@@ -13,6 +13,10 @@ robocopy $repoRoot $BuildRoot /E /XD .git node_modules build desktop agents /NFL
 if($LASTEXITCODE -ge 8){throw 'Could not stage source'}
 Push-Location $BuildRoot
 try{& npm.cmd ci;if($LASTEXITCODE){throw 'npm ci failed'};& npm.cmd run build;if($LASTEXITCODE){throw 'Frontend build failed'}}finally{Pop-Location}
+$bundleVersion=(Get-FileHash -LiteralPath (Join-Path $BuildRoot 'dist/bundle.js') -Algorithm SHA256).Hash.ToLowerInvariant().Substring(0,16)
+$indexPath=Join-Path $BuildRoot 'index.html'
+$indexBody=[IO.File]::ReadAllText($indexPath) -replace 'src="dist/bundle\.js(?:\?[^" ]*)?"', ('src="dist/bundle.js?v='+$bundleVersion+'"')
+[IO.File]::WriteAllText($indexPath,$indexBody,[Text.UTF8Encoding]::new($false))
 $desktop=Join-Path $BuildRoot 'desktop'
 New-Item -ItemType Directory -Path $desktop,(Join-Path $desktop 'web') -Force|Out-Null
 Copy-Item (Join-Path $repoRoot 'desktop\*.go'),(Join-Path $repoRoot 'desktop\go.mod'),(Join-Path $repoRoot 'desktop\go.sum') $desktop -Force

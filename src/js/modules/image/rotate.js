@@ -39,6 +39,36 @@ class Image_rotate_class {
 		}, false);
 	}
 
+ rotate_canvas() {
+  this.Dialog.show({title: 'Rotate Image', params: [
+   {name: 'angle', title: 'Clockwise:', value: '90', values: ['90', '180', '270']}
+  ], on_finish: params => this.rotate_canvas_handler(Number(params.angle))});
+ }
+
+ rotate_canvas_handler(angle) {
+  if (![90, 180, 270].includes(angle)) return;
+  if (config.layers.some(layer => layer.rotate === null)) {
+   alertify.error('Convert non-rotatable layers to raster before rotating the whole image.');
+   return;
+  }
+  const width = config.WIDTH, height = config.HEIGHT;
+  const newWidth = angle === 180 ? width : height;
+  const newHeight = angle === 180 ? height : width;
+  const actions = [new app.Actions.Prepare_canvas_action('undo')];
+  for (const layer of config.layers) {
+   const cx = layer.x + layer.width / 2, cy = layer.y + layer.height / 2;
+   const nx = angle === 90 ? height - cy : angle === 180 ? width - cx : cy;
+   const ny = angle === 90 ? cx : angle === 180 ? height - cy : width - cx;
+   actions.push(new app.Actions.Update_layer_action(layer.id, {
+    x: nx - layer.width / 2, y: ny - layer.height / 2,
+    rotate: ((layer.rotate || 0) + angle) % 360
+   }));
+  }
+  actions.push(new app.Actions.Update_config_action({WIDTH: newWidth, HEIGHT: newHeight}),
+   new app.Actions.Prepare_canvas_action('do'));
+  return app.State.do_action(new app.Actions.Bundle_action('rotate_image', 'Rotate Image', actions));
+ }
+
 	rotate() {
 		var _this = this;
 

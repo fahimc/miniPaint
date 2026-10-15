@@ -2,7 +2,7 @@
 
 A portable image editor with a dark desktop workspace, real drawing tools, layers and filters. Edit device files on their own, or connect to My Drive to open and save images through FileBrowser.
 
-[Download Studio for Windows](https://github.com/fahimc/miniPaint/releases/tag/studio-v0.1.0) · [Usage and configuration](STUDIO.md) · [FileBrowser adapter](integrations/filebrowser/install.ps1) · [One Workspace](https://github.com/fahimc/one-workspace)
+[Download Studio for Windows](https://github.com/oneworkspacestudio/Photo-Editor/releases) · [Usage and configuration](STUDIO.md) · [FileBrowser adapter](integrations/filebrowser/install.ps1) · [One Workspace](https://github.com/oneworkspacestudio/one-workspace)
 
 ![Photo Editor displaying a sample image with drawing tools, Navigator, Color and Layers panels](images/studio-workflow-preview.png)
 
@@ -18,7 +18,7 @@ A portable image editor with a dark desktop workspace, real drawing tools, layer
 
 ## Start the Windows app
 
-1. Download the [Studio preview](https://github.com/fahimc/miniPaint/releases/tag/studio-v0.1.0).
+1. Download the [Studio preview](https://github.com/oneworkspacestudio/Photo-Editor/releases).
 2. Run `Studio.exe`. It opens the editor at `http://localhost:8870`.
 3. Choose **Open** for a device image, or start with a new canvas.
 4. Use **Save** or **Save as**. Browsers with File System Access support can write directly after permission; others download a copy.
