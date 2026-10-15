@@ -1,4 +1,8 @@
-# <img src="images/logo.svg" alt="" width="40" height="40"> Photo Editor · Studio
+<p align="center">
+  <img src="images/logo.svg" alt="Photo Editor · Studio logo" width="112" height="112">
+</p>
+
+<h1 align="center">Photo Editor · Studio</h1>
 
 A portable image editor with a dark desktop workspace, real drawing tools, layers and filters. Edit device files on their own, or connect to My Drive to open and save images through FileBrowser.
 
